@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "nome": "dfasdfa",
+        "NIF": "123123123",
+        "data de Nascimento": "1987-09-23 00:00:00",
+        "telefone": "123123123",
+        "email": "a@a.com"
+    },
+    {
+        "id": 2,
+        "nome": "fdasfa",
+        "NIF": "123123123",
+        "data de Nascimento": "1987-09-23 00:00:00",
+        "telefone": "123123123",
+        "email": "b@b.com"
+    }
+]
