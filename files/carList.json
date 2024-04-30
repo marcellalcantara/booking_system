@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "matricula": "36-sw-94",
+        "marca": "BMW",
+        "modelo": "x6",
+        "cor": "branca",
+        "portas": "5",
+        "precoDiario": 300.0,
+        "cilindrada": 2.0,
+        "potencia": "300cv"
+    },
+    {
+        "id": 2,
+        "matricula": "47-pl-96",
+        "marca": "Ford",
+        "modelo": "Fiesta",
+        "cor": "Preto",
+        "portas": "5",
+        "precoDiario": 50.0,
+        "cilindrada": 1.2,
+        "potencia": "150cv"
+    },
+    {
+        "id": 3,
+        "matricula": "56-lp-87",
+        "marca": "renault",
+        "modelo": "megane",
+        "cor": "preta",
+        "portas": "3",
+        "precoDiario": 52.0,
+        "cilindrada": 1.2,
+        "potencia": "110cv"
+    }
+]

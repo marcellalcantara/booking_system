@@ -1,0 +1,41 @@
+[
+    {
+        "dataInicio": "2024-05-01 00:00:00",
+        "dataFim": "2024-05-05 00:00:00",
+        "automovel_id": [
+            1,
+            "BMW",
+            "x6"
+        ],
+        "totalDias": 4,
+        "desconto": 0
+    },
+    {
+        "dataInicio": "2024-05-02 00:00:00",
+        "dataFim": "2024-05-05 00:00:00",
+        "automovel_id": [
+            1,
+            "BMW",
+            "x6",
+            300.0
+        ],
+        "totalDias": 3,
+        "desconto": 0
+    },
+    {
+        "dataInicio": "2024-05-01 00:00:00",
+        "dataFim": "2024-05-05 00:00:00",
+        "cliente_id": [
+            1,
+            "Romulo"
+        ],
+        "automovel_id": [
+            1,
+            "BMW",
+            "x6",
+            300.0
+        ],
+        "totalDias": 4,
+        "desconto": 0
+    }
+]

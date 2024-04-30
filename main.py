@@ -28,17 +28,5 @@ def menu():
             case _:
                 print("\nErro: opção inválida!\n")
 
-
-## ????
-# Funções específicas
-
-def atualizar():
-    pass  # Implementar função para atualizar registros
- 
-def remover():
-    pass  # Implementar função para remover registros
- 
-### ???
-
 # Inicialização do programa
 menu() 
