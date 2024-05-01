@@ -3,56 +3,24 @@
         "id": 1,
         "nome": "Romulo",
         "NIF": "123123123",
-        "data de Nascimento": "1987-09-23 00:00:00",
+        "dataNascimento": "1980-12-07 00:00:00",
         "telefone": "987654321",
         "email": "r@r.com"
     },
     {
         "id": 2,
-        "nome": "Marcella",
-        "NIF": "123123124",
-        "data de Nascimento": "1987-09-23 00:00:00",
-        "telefone": "987456123",
-        "email": "m@m.com"
-    },
-    {
-        "id": 3,
-        "nome": "Thais",
-        "NIF": "123123125",
-        "data de Nascimento": "1991-12-25 00:00:00",
-        "telefone": "951847623",
+        "nome": "Tha\u00eds",
+        "NIF": "234234234",
+        "dataNascimento": "1980-12-25 00:00:00",
+        "telefone": "999999999",
         "email": "t@t.com"
     },
     {
-        "id": 4,
-        "nome": "Logans",
-        "NIF": "123123126",
-        "data de Nascimento": "1991-01-28 00:00:00",
-        "telefone": "951263487",
-        "email": "l@l.com"
-    },
-    {
-        "id": 5,
-        "nome": "thais",
-        "NIF": "123123127",
-        "data de Nascimento": "1991-05-01 00:00:00",
-        "telefone": "963852741",
-        "email": "th@th.com"
-    },
-    {
-        "id": 6,
-        "nome": "Thais     Vassequi   ",
-        "NIF": "123123128",
-        "data de Nascimento": "1900-05-03 00:00:00",
-        "telefone": "654789321",
-        "email": "vass@gmail.com"
-    },
-    {
-        "id": 7,
-        "nome": "Marcella Freitas Aguiar",
-        "NIF": "123123129",
-        "data de Nascimento": "2000-09-06 00:00:00",
-        "telefone": "912345678",
-        "email": "marc@gmail.com"
+        "id": 3,
+        "nome": "Marcella",
+        "NIF": "123123124",
+        "dataNascimento": "1900-12-06 00:00:00",
+        "telefone": "951741852",
+        "email": "m@m.com"
     }
 ]

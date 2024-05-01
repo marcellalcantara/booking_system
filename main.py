@@ -14,7 +14,7 @@ def menu():
             "4 - Sair"
         ]
         print("\nVocê está no rent-a-car Fundão, o que deseja gerenciar?\n")  
-        op = beaupy.select(lista, cursor='=>', cursor_style='green', return_index=True)+1
+        op = beaupy.select(lista, cursor='=>', cursor_style='blue', return_index=True)+1
         match op:
             case 1:
                 clientMenu()

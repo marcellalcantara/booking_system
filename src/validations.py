@@ -29,6 +29,14 @@ def validarNif():
         else:
             print("O NIF é inválido. Certifique-se de que contém exatamente 9 dígitos.")
 
+def validarNifUpdate():
+    while True:
+        nif = input("NIF: ")
+        if len(nif) == 9 and nif.isdigit():
+            return nif
+        else:
+            print("O NIF é inválido. Certifique-se de que contém exatamente 9 dígitos.")
+
 def validarDataNascimento():
     while True:
         dataInput = input("Data de nascimento (dd/mm/aaaa): ")
@@ -73,6 +81,15 @@ def matricula():
             return matricula
         else:
             print ("Matrícula inserida inválida. Deve conter 6 caracteres")
+
+def matriculaUpdate():
+    while True:
+        matriculaInput = input("Matricula(sem traços):")
+        if len(matriculaInput) != 6:
+            print ("Matricula inserida inválida. Deve conter 6 caracteres")
+        else:
+            matricula = '-'.join([matriculaInput[:2], matriculaInput[2:4], matriculaInput[4:]])
+            return matricula
          
 def validaLetra(letter):
     while True:
@@ -163,22 +180,30 @@ def importIdCar():
             matricula = '-'.join([matriculaInput[:2], matriculaInput[2:4], matriculaInput[4:]])
             for car in carList():
                 if car['matricula'] == matricula:
-                    return (car['id'], car['marca'], car['modelo'], car['precoDiario'])
+                    return (car['id'], car['marca'], car['modelo'], car['precoDiario'], car['matricula'])
             print("Matrícula não encontrada. Tente novamente.")
         else:
             print("Formato de matrícula inválido. Deve ter 6 caracteres.")
 
 def importIdClient():
     while True:
-        nifInput = input("NIF: ")
+        nifInput = input("NIF do cliente: ")
         if len(nifInput) == 9 and nifInput.isdigit():
             for cliente in clientList():
-                if cliente['NI'] == nifInput:
+                if cliente['NIF'] == nifInput:
                     return (cliente['id'], cliente['nome'])
             print("Cliente não encontrado. Tente novamente.")
         else:
             print("Formato do NIF é inválido.Digite novamente.")
-'''
-def valorTotal(precoDiario, dias, calcularDesconto(dias)):  
+
+def valorTotal(precoDiario, dias, calcularDesconto):  
     valorTotal = precoDiario * dias * (1 - calcularDesconto)
-    return valorTotal'''
+    return valorTotal
+
+def integerNumber():
+    bookingId = input(f"ID da reserva: ")
+    if bookingId.isdigit():
+        return bookingId
+    else:
+        print("Reserva Inválida. Digite apenas números")
+    return  bookingId

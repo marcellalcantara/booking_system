@@ -11,25 +11,36 @@
         "potencia": "300cv"
     },
     {
-        "id": 2,
-        "matricula": "47-pl-96",
-        "marca": "Ford",
-        "modelo": "Fiesta",
-        "cor": "Preto",
-        "portas": "5",
-        "precoDiario": 50.0,
-        "cilindrada": 1.2,
-        "potencia": "150cv"
+        "id": 3,
+        "matricula": "gt-54-12",
+        "marca": "Mercedes",
+        "modelo": "classe A",
+        "cor": "preto",
+        "portas": "3",
+        "precoDiario": 250.0,
+        "cilindrada": 2.5,
+        "potencia": "300"
     },
     {
-        "id": 3,
-        "matricula": "56-lp-87",
-        "marca": "renault",
-        "modelo": "megane",
-        "cor": "preta",
-        "portas": "3",
-        "precoDiario": 52.0,
-        "cilindrada": 1.2,
-        "potencia": "110cv"
+        "id": 4,
+        "matricula": "yh-48-pl",
+        "marca": "BMW",
+        "modelo": "x4",
+        "cor": "branco",
+        "portas": "5",
+        "precoDiario": 250.0,
+        "cilindrada": 2.0,
+        "potencia": "400"
+    },
+    {
+        "id": 4,
+        "matricula": "yh-48-pl",
+        "marca": "BMW",
+        "modelo": "x4",
+        "cor": "branco",
+        "portas": "5",
+        "precoDiario": 250.0,
+        "cilindrada": 2.0,
+        "potencia": "400"
     }
 ]
