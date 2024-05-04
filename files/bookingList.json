@@ -17,5 +17,43 @@
         "totalDias": 10,
         "desconto": 0.25,
         "valorTotal": 2250.0
+    },
+    {
+        "id": 1001,
+        "dataInicio": "2024-05-05 00:00:00",
+        "dataFim": "2024-05-06 00:00:00",
+        "totalDias": 1,
+        "cliente_id": [
+            1,
+            "Romulo"
+        ],
+        "automovel_id": [
+            1,
+            "BMW",
+            "x6",
+            300.0,
+            "36-sw-94"
+        ],
+        "desconto": 0,
+        "valorTotal": 300.0
+    },
+    {
+        "id": 1002,
+        "dataInicio": "2024-01-01 00:00:00",
+        "dataFim": "2024-01-03 00:00:00",
+        "totalDias": 2,
+        "cliente_id": [
+            2,
+            "Thais"
+        ],
+        "automovel_id": [
+            1,
+            "BMW",
+            "x6",
+            300.0,
+            "36-sw-94"
+        ],
+        "desconto": 0,
+        "valorTotal": 600.0
     }
 ]

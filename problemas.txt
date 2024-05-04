@@ -1,0 +1,8 @@
+=> Menu pesquisar do booking
+=> Consigo fazer reservas com datas passadas
+=> Professor quer reservas futuras
+=> Ele não evita conflitos em reservar o mesmo carro, na mesma data
+
+=> Quando deleta algo e vai add
+
+=> Ele não evita conflitos em reservar o mesmo carro, na mesma data

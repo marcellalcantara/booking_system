@@ -101,6 +101,8 @@ def searchClient():
                     print("\nCliente removido com sucesso!\n")
                 case 3:
                     print("Voltando...") 
+        else:
+            print("\nNão foram encontrados resultados com o critério definido!\n")
 
 def clientMenu():
     while True:

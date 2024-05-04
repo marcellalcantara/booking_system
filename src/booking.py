@@ -8,7 +8,7 @@ from src.car import carList
 def bookingList():
     return loadData("files/bookingList.json")
   
-def printbooking(booking):
+def printBooking(booking):
     print(f"""
           \033[34mID:\033[0m {booking['id']} \033[34mInício:\033[0m {booking['dataInicio']} \033[34mFim:\033[0m {booking['dataFim']} \033[34mQuantidade de dias:\033[0m {booking['totalDias']} dias
           \033[34mCliente:\033[0m {booking['cliente_id'][0]} - {booking['cliente_id'][1]}
@@ -20,7 +20,7 @@ def printAllBooking():
     print("\nListagem de reservas: \n")
     if len(bookingList()) > 0:
         for booking in bookingList():
-            printbooking(booking)
+            printBooking(booking)
     else:
         print("\nAinda não foram registados reservas!\n") 
 
@@ -33,9 +33,9 @@ def insertBooking():
     newBooking['id'] = id
     newBooking['dataInicio'] = inicio()
     newBooking['dataFim'] = fim()
+    newBooking['totalDias'] = totalDias(newBooking['dataInicio'], newBooking['dataFim'])
     newBooking['cliente_id'] = importIdClient() 
     newBooking['automovel_id'] = importIdCar() 
-    newBooking['totalDias'] = totalDias(newBooking['dataInicio'], newBooking['dataFim'])
     newBooking['desconto'] = calcularDesconto(newBooking['totalDias'])
     newBooking['valorTotal'] = valorTotal(newBooking['automovel_id'][3], newBooking['totalDias'],  newBooking['desconto'])
 
@@ -44,11 +44,10 @@ def insertBooking():
     writeData(list, 'files/bookingList.json')
     print("Reserva adicionada com sucesso!")
 
-
 def creatBookingMenu(bookingSearch):
     temp = []
     for booking in bookingSearch:
-        temp.append(f"{booking['id']} - {booking['cliente_id']} - {booking['automovel_id']}")
+        temp.append(f"{booking['id']} - {booking['cliente_id'][1]} - {booking['automovel_id'][4]}")
     return temp
 
 def bookingUpdate(booking):
@@ -84,27 +83,28 @@ def bookingDelete(booking):
 
 def searchBooking():
     bookingSearch = []
-    bookingId = integerNumber()
-    print(f"\nPesquisa da reserva pelo nº da reserva: {bookingId}. Está correto?\n")
+    bookingID = integerNumber()
+    print(f"\nPesquisa da reserva pelo nº da reserva: {bookingID}. Está correto?\n")
     for booking in bookingList():
-        if booking['id'] == bookingId:
+        if booking['id'] == bookingID:
             bookingSearch.append(booking)
     else:
         if bookingSearch:
-            idSearch = creatBookingMenu(bookingSearch)
-            op = beaupy.select(idSearch, cursor='=>', cursor_style='blue', return_index=True)
-            printbooking(bookingSearch[op])
+            listSearch = creatBookingMenu(bookingSearch)
+            op = beaupy.select(listSearch, cursor='=>', cursor_style='blue', return_index=True)
+            printBooking(bookingSearch[op])
 
             optionsList = ["1 - Atualizar", "2 - Deletar", "3 - Voltar"]
-            op1 = beaupy.select(optionsList, cursor='=>', cursor_style='blue', return_index=True)
-            if op1 == 0: #Atualizar
-                bookingUpdate(bookingSearch[op])
-                print("\nCarro atualizado com sucesso!\n")
-            elif op1 == 1: #Apagar
-                bookingDelete(bookingSearch[op])
-                print("\nReserva removida com sucesso!\n")
-            else:
-                return
+            op1 = beaupy.select(optionsList, cursor='=>', cursor_style='blue', return_index=True)+1
+            match op1:
+                case 1:
+                    bookingUpdate(bookingSearch[op])
+                    print("\nCarro atualizado com sucesso!\n")
+                case 2:
+                    bookingDelete(bookingSearch[op])
+                    print("\nReserva removida com sucesso!\n")
+                case 3:
+                    print("Voltando...")
         else:
             print("\nNão foram encontrados resultados com o critério definido!\n")
 

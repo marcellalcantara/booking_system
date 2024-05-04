@@ -31,16 +31,5 @@
         "precoDiario": 250.0,
         "cilindrada": 2.0,
         "potencia": "400"
-    },
-    {
-        "id": 4,
-        "matricula": "yh-48-pl",
-        "marca": "BMW",
-        "modelo": "x4",
-        "cor": "branco",
-        "portas": "5",
-        "precoDiario": 250.0,
-        "cilindrada": 2.0,
-        "potencia": "400"
     }
 ]
