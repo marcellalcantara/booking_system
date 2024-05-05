@@ -44,7 +44,7 @@ def insertBooking():
     writeData(list, 'files/bookingList.json')
     print("Reserva adicionada com sucesso!")
 
-def creatBookingMenu(bookingSearch):
+def createBookingMenu(bookingSearch):
     temp = []
     for booking in bookingSearch:
         temp.append(f"{booking['id']} - {booking['cliente_id'][1]} - {booking['automovel_id'][4]}")
@@ -86,27 +86,27 @@ def searchBooking():
     bookingID = integerNumber()
     print(f"\nPesquisa da reserva pelo nº da reserva: {bookingID}. Está correto?\n")
     for booking in bookingList():
-        if booking['id'] == bookingID:
+        if booking['id'] == int(bookingID):
             bookingSearch.append(booking)
-    else:
-        if bookingSearch:
-            listSearch = creatBookingMenu(bookingSearch)
-            op = beaupy.select(listSearch, cursor='=>', cursor_style='blue', return_index=True)
-            printBooking(bookingSearch[op])
+    
+    if len(bookingSearch) > 0:
+        listSearch = createBookingMenu(bookingSearch)
+        op = beaupy.select(listSearch, cursor='=>', cursor_style='blue', return_index=True)
+        printBooking(bookingSearch[op])
 
-            optionsList = ["1 - Atualizar", "2 - Deletar", "3 - Voltar"]
-            op1 = beaupy.select(optionsList, cursor='=>', cursor_style='blue', return_index=True)+1
-            match op1:
-                case 1:
-                    bookingUpdate(bookingSearch[op])
-                    print("\nCarro atualizado com sucesso!\n")
-                case 2:
-                    bookingDelete(bookingSearch[op])
-                    print("\nReserva removida com sucesso!\n")
-                case 3:
-                    print("Voltando...")
-        else:
-            print("\nNão foram encontrados resultados com o critério definido!\n")
+        optionsList = ["1 - Atualizar", "2 - Deletar", "3 - Voltar"]
+        op1 = beaupy.select(optionsList, cursor='=>', cursor_style='blue', return_index=True)+1
+        match op1:
+            case 1:
+                bookingUpdate(bookingSearch[op])
+                print("\Reserva atualizado com sucesso!\n")
+            case 2:
+                bookingDelete(bookingSearch[op])
+                print("\nReserva removida com sucesso!\n")
+            case 3:
+                print("Voltando...")
+    else:
+        print("\nNão foram encontrados resultados com o critério definido!\n")
 
 def bookingMenu():
     while True:
