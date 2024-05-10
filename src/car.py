@@ -1,6 +1,6 @@
 import beaupy
 from src.fileStore import loadData, writeData
-from src.validations import matricula, matriculaUpdate, marca, cor, portas, validaPreco, validarCilindradas, validarPotencia
+from src.validations import matricula, matriculaUpdate, marca, cor, portas, validaPreco, validarCilindradas, validarPotencia, getCarID
 
 def carList():
     return loadData("files/carList.json")
@@ -22,11 +22,9 @@ def printAllCars():
 
 def insertCar():
     print("\nInsira os dados do automóvel: \n")
-    count = len(carList()) # Iniciando o id
-    id = count + 1
 
     newCar = {}
-    newCar['id'] = id
+    newCar['id'] = getCarID()
     newCar['matricula'] = matricula()
     newCar['marca'] = marca()
     newCar['modelo'] = input ("Modelo: ")

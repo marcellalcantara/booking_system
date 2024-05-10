@@ -1,7 +1,7 @@
 import beaupy
 
 from src.fileStore import loadData, writeData
-from src.validations import validarNome, validarNif, validarNifUpdate, validarDataNascimento, validarTelefone, validarEmail, getNextID
+from src.validations import validarNome, validarNif, validarNifUpdate, validarDataNascimento, validarTelefone, validarEmail, getClientID
 
 def clientList():
     return loadData("files/clientList.json")
@@ -26,7 +26,7 @@ def insertClient():
     print("\nInsira os dados do Cliente: \n")
     
     newClient = {}
-    newClient['id'] = getNextID()
+    newClient['id'] = getClientID()
     newClient['nome'] = validarNome()
     newClient['NIF'] = validarNif()
     newClient['dataNascimento'] = validarDataNascimento() 
