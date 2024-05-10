@@ -40,8 +40,7 @@ def insertBooking():
     newBooking = {}
     newBooking['id'] = getbookingID()
     newBooking['dataInicio'] = inicio()
-    newBooking['dataFim'] = fim()
-    #newBooking['dataFim'] = fim(newBooking['dataInicio'])
+    newBooking['dataFim'] = fim(newBooking['dataInicio'])
     newBooking['totalDias'] = totalDias(newBooking['dataInicio'], newBooking['dataFim'])
     newBooking['cliente_id'] = importIdClient() 
     newBooking['automovel_id'] = importIdCar() 

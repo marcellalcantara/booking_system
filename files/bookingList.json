@@ -74,5 +74,24 @@
         ],
         "desconto": 0.15,
         "valorTotal": 1062.5
+    },
+    {
+        "id": 1004,
+        "dataInicio": "2024-05-10 00:00:00",
+        "dataFim": "2024-05-11 00:00:00",
+        "totalDias": 1,
+        "cliente_id": [
+            1,
+            "Romulo"
+        ],
+        "automovel_id": [
+            3,
+            "Mercedes",
+            "classe A",
+            250.0,
+            "gt-54-12"
+        ],
+        "desconto": 0,
+        "valorTotal": 250.0
     }
 ]

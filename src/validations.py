@@ -171,28 +171,20 @@ def inicio():
                 return inicio
         except ValueError:
             print("Data inválida. Por favor, insira a data no formato dd/mm/aaaa.")
-'''
+
 def fim(inicio):
     while True:
         fimInput = input("Fim (dd/mm/aaaa): ")
         try:
             fim = datetime.strptime(fimInput, "%d/%m/%Y")
-            novoinicio = datetime.strptime(inicio)
-            if fim.date() <= inicio:
+
+            if fim <= inicio:
                 print("Data inválida. A data de término deve ser pelo menos um dia após a data de início.")
             else: 
                 return fim
         except ValueError:
             print("Data inválida. Por favor, insira a data no formato dd/mm/aaaa.")        
-'''
-def fim():
-    while True:
-        fimInput = input("Fim (dd/mm/aaaa): ")
-        try:
-            fim = datetime.strptime(fimInput, "%d/%m/%Y") 
-            return fim
-        except ValueError:
-            print("Data inválida. Por favor, insira a data no formato dd/mm/aaaa.")
+
 
 def totalDias(fim, inicio):
     dias = (inicio - fim).days 
