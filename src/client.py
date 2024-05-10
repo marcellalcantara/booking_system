@@ -1,7 +1,7 @@
 import beaupy
 
 from src.fileStore import loadData, writeData
-from src.validations import validarNome, validarNif, validarNifUpdate, validarDataNascimento, validarTelefone, validarEmail
+from src.validations import validarNome, validarNif, validarNifUpdate, validarDataNascimento, validarTelefone, validarEmail, getNextID
 
 def clientList():
     return loadData("files/clientList.json")
@@ -9,7 +9,7 @@ def clientList():
 def printClient(client):
     print(f"""
           \033[34mID:\033[0m {client['id']} \033[34mNome:\033[0m {client['nome']} \033[34mNIF:\033[0m {client['NIF']}
-          \033[34mData de nascimento:\033[0m {client['dataNascimento']} \033[34mTelefone:\033[0m {client['telefone']}
+          \033[34mData de nascimento:\033[0m {client['dataNascimento'].split()[0]} \033[34mTelefone:\033[0m {client['telefone']}
           \033[34mE-mail:\033[0m {client['email']}
           """)
 
@@ -21,14 +21,12 @@ def printAllClients():
     else:
         print("\nAinda não foram registados clientes!\n")
 
+
 def insertClient():
     print("\nInsira os dados do Cliente: \n")
-
-    count = len(clientList()) # Iniciando o id
-    id = count + 1
     
     newClient = {}
-    newClient['id'] = id
+    newClient['id'] = getNextID()
     newClient['nome'] = validarNome()
     newClient['NIF'] = validarNif()
     newClient['dataNascimento'] = validarDataNascimento() 

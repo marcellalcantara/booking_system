@@ -9,6 +9,10 @@ def carList():
     return loadData("files/carList.json")
 
 # Definir funções de Validação Cliente
+def getNextID():
+    listID = [client['id'] for client in clientList()]
+    return listID[-1] + 1
+
 def validarNome():
     while True:
         nomeInput = input("Nome: ").strip()
@@ -147,6 +151,32 @@ def inicio():
     while True:
         inicioInput = input("Início (dd/mm/aaaa): ")
         try:
+            inicio = datetime.strptime(inicioInput, "%d/%m/%Y")
+            hoje = datetime.now()
+            if inicio.date() < hoje.date():
+                print("Data inválida. Por favor, insira uma data a partir de hoje.")
+            else:
+                return inicio
+        except ValueError:
+            print("Data inválida. Por favor, insira a data no formato dd/mm/aaaa.")
+
+def fim(inicio):
+    while True:
+        fimInput = input("Fim (dd/mm/aaaa): ")
+        try:
+            fim = datetime.strptime(fimInput, "%d/%m/%Y")
+            novoinicio = datetime.strptime(inicio)
+            if fim.date() <= novoinicio:
+                print("Data inválida. A data de término deve ser pelo menos um dia após a data de início.")
+            else: 
+                return fim
+        except ValueError:
+            print("Data inválida. Por favor, insira a data no formato dd/mm/aaaa.")            
+'''
+def inicio():
+    while True:
+        inicioInput = input("Início (dd/mm/aaaa): ")
+        try:
             inicio = datetime.strptime(inicioInput, "%d/%m/%Y")   #Verificar input listagem
             return inicio
         except ValueError:
@@ -156,11 +186,11 @@ def fim():
     while True:
         fimInput = input("Fim (dd/mm/aaaa): ")
         try:
-            fim = datetime.strptime(fimInput, "%d/%m/%Y")   #Verificar input listagem
+            fim = datetime.strptime(fimInput, "%d/%m/%Y") 
             return fim
         except ValueError:
             print("Data inválida. Por favor, insira a data no formato dd/mm/aaaa.")
-
+'''
 def totalDias(fim, inicio):
     dias = (inicio - fim).days 
     return dias
