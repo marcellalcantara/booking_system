@@ -8,7 +8,14 @@ def clientList():
 def carList():
     return loadData("files/carList.json")
 
+def bookingList():
+    return loadData("files/bookingList.json")
+
 # Definir funções de Validação Cliente
+def getClientID():
+    listID = [client['id'] for client in clientList()]
+    return listID[-1] + 1
+
 def validarNome():
     while True:
         nomeInput = input("Nome: ").strip()
@@ -70,6 +77,11 @@ def validarEmail():
             print("O e-mail é invalido! Insira novamente")
 
 # Definir funções de Validação veiculo
+
+def getCarID():
+    listID = [car['id'] for car in carList()]
+    return listID[-1] + 1
+
 def matricula():
     while True:
         matriculaInput = input("Matrícula(sem traços): ")
@@ -143,20 +155,41 @@ def validarPotencia():
 
 #Definir funções de validação booking
 
+def getbookingID():
+    listID = [booking['id'] for booking in bookingList()]
+    return listID[-1] + 1
+
 def inicio():
     while True:
         inicioInput = input("Início (dd/mm/aaaa): ")
         try:
-            inicio = datetime.strptime(inicioInput, "%d/%m/%Y")   #Verificar input listagem
-            return inicio
+            inicio = datetime.strptime(inicioInput, "%d/%m/%Y")
+            hoje = datetime.now()
+            if inicio.date() < hoje.date():
+                print("Data inválida. Por favor, insira uma data a partir de hoje.")
+            else:
+                return inicio
         except ValueError:
             print("Data inválida. Por favor, insira a data no formato dd/mm/aaaa.")
-
+'''
+def fim(inicio):
+    while True:
+        fimInput = input("Fim (dd/mm/aaaa): ")
+        try:
+            fim = datetime.strptime(fimInput, "%d/%m/%Y")
+            novoinicio = datetime.strptime(inicio)
+            if fim.date() <= inicio:
+                print("Data inválida. A data de término deve ser pelo menos um dia após a data de início.")
+            else: 
+                return fim
+        except ValueError:
+            print("Data inválida. Por favor, insira a data no formato dd/mm/aaaa.")        
+'''
 def fim():
     while True:
         fimInput = input("Fim (dd/mm/aaaa): ")
         try:
-            fim = datetime.strptime(fimInput, "%d/%m/%Y")   #Verificar input listagem
+            fim = datetime.strptime(fimInput, "%d/%m/%Y") 
             return fim
         except ValueError:
             print("Data inválida. Por favor, insira a data no formato dd/mm/aaaa.")

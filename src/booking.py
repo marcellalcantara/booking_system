@@ -1,7 +1,7 @@
 import beaupy
 from datetime import datetime
 from src.fileStore import loadData, writeData
-from src.validations import inicio, fim, totalDias, calcularDesconto, importIdCar, importIdClient, valorTotal, integerNumber
+from src.validations import inicio, fim, totalDias, calcularDesconto, importIdCar, importIdClient, valorTotal, integerNumber, getbookingID
 from src.client import clientList
 from src.car import carList
 
@@ -13,26 +13,35 @@ def printBooking(booking):
           \033[34mID:\033[0m {booking['id']} \033[34mInício:\033[0m {booking['dataInicio']} \033[34mFim:\033[0m {booking['dataFim']} \033[34mQuantidade de dias:\033[0m {booking['totalDias']} dias
           \033[34mCliente:\033[0m {booking['cliente_id'][0]} - {booking['cliente_id'][1]}
           \033[34mAutomóvel:\033[0m {booking['automovel_id'][0]} - {booking['automovel_id'][1]}({booking['automovel_id'][2]}) Matrícula:{booking['automovel_id'][4]}
-          \033[34mValor total:\033[0m {booking['valorTotal']:.2f}€. Nessa reserva você obteve um desconto de: {booking['desconto']}%.
+          \033[34mValor total:\033[0m {booking['valorTotal']:.2f}€. Nessa reserva você obteve um desconto de: {booking['desconto']*100:.2f}%.
           """)
 
 def printAllBooking():
     print("\nListagem de reservas: \n")
     if len(bookingList()) > 0:
         for booking in bookingList():
-            printBooking(booking)
+            listB = ["1 - Reservas Passadas", "2 - Reservas Futuras", "3 - Voltar"]
+            op = beaupy.select(listB, cursor='=>', cursor_style='blue', return_index=True)+1
+            match op:
+                case 1:
+                    printBooking(booking)
+                case 2:
+                    printBooking(booking)
+                case 3: 
+                    print("Voltando...")
+                    return #ver a necessidade do return aqui. 
+            #printBooking(booking)
     else:
         print("\nAinda não foram registados reservas!\n") 
 
 def insertBooking():
     print("\nInsira os dados da reserva: \n") 
-    count = len(bookingList()) + 999 #Iniciando o id em 1000
-    id = count + 1
 
     newBooking = {}
-    newBooking['id'] = id
+    newBooking['id'] = getbookingID()
     newBooking['dataInicio'] = inicio()
     newBooking['dataFim'] = fim()
+    #newBooking['dataFim'] = fim(newBooking['dataInicio'])
     newBooking['totalDias'] = totalDias(newBooking['dataInicio'], newBooking['dataFim'])
     newBooking['cliente_id'] = importIdClient() 
     newBooking['automovel_id'] = importIdCar() 
@@ -58,7 +67,7 @@ def bookingUpdate(booking):
         case 1:
             booking['dataInicio'] = inicio()
         case 2:
-            booking['dataFim'] = fim()
+            booking['dataFim'] = fim(booking['dataInicio'])
         case 3: 
             booking['cliente_id'] = importIdClient()
         case 4: 
