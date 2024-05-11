@@ -31,5 +31,16 @@
         "precoDiario": 250.0,
         "cilindrada": 2.0,
         "potencia": "400"
+    },
+    {
+        "id": 5,
+        "matricula": "87-pq-26",
+        "marca": "Citroen",
+        "modelo": "C1",
+        "cor": "prata",
+        "portas": "3",
+        "precoDiario": 40.0,
+        "cilindrada": 1.0,
+        "potencia": "80"
     }
 ]

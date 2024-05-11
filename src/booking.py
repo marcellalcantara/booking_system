@@ -2,19 +2,17 @@ import beaupy
 from datetime import datetime
 from src.fileStore import loadData, writeData
 from src.validations import inicio, fim, totalDias, calcularDesconto, importIdCar, importIdClient, valorTotal, integerNumber, getbookingID
-from src.client import clientList
-from src.car import carList
 
 def bookingList():
     return loadData("files/bookingList.json")
   
 def printBooking(booking):
     print(f"""
-          \033[34mID:\033[0m {booking['id']} \033[34mInício:\033[0m {booking['dataInicio'].split()[0]} \033[34mFim:\033[0m {booking['dataFim'].split()[0]} \033[34mQuantidade de dias:\033[0m {booking['totalDias']} dias
-          \033[34mCliente:\033[0m {booking['cliente_id'][0]} - {booking['cliente_id'][1]}
-          \033[34mAutomóvel:\033[0m {booking['automovel_id'][0]} - {booking['automovel_id'][1]}({booking['automovel_id'][2]}) Matrícula:{booking['automovel_id'][4]}
-          \033[34mValor total:\033[0m {booking['valorTotal']:.2f}€. Nessa reserva você obteve um desconto de: {booking['desconto']*100:.2f}%.
-          """)
+    \033[34mID:\033[0m {booking['id']} \033[34mInício:\033[0m {booking['dataInicio']} \033[34mFim:\033[0m {booking['dataFim']} \033[34mQuantidade de dias:\033[0m {booking['totalDias']} dias
+    \033[34mCliente:\033[0m {booking['cliente_id'][0]} - {booking['cliente_id'][1]}
+    \033[34mAutomóvel:\033[0m {booking['automovel_id'][0]} - {booking['automovel_id'][1]}({booking['automovel_id'][2]}) Matrícula:{booking['automovel_id'][4]}
+    \033[34mValor total:\033[0m {booking['valorTotal']:.2f}€. Nessa reserva você obteve um desconto de: {booking['desconto']*100:.2f}%.
+    """)
 
 def printAllBooking():
     print("\nListagem de reservas: \n")

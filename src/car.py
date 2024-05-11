@@ -1,16 +1,21 @@
 import beaupy
+from datetime import datetime
 from src.fileStore import loadData, writeData
 from src.validations import matricula, matriculaUpdate, marca, cor, portas, validaPreco, validarCilindradas, validarPotencia, getCarID
+from src.booking import printBooking
 
 def carList():
     return loadData("files/carList.json")
 
+def bookingList():
+    return loadData("files/bookingList.json")
+
 def printCar(automovel):
     print(f"""
-          \033[34mID:\033[0m {automovel['id']} \033[34mMatrícula:\033[0m {automovel['matricula']} \033[34mMarca:\033[0m {automovel['marca']} \033[34mModelo:\033[0m {automovel['modelo']} 
-          \033[34mCor:\033[0m {automovel['cor']} \033[34mPortas:\033[0m {automovel['portas']} \033[34mCilindrada:\033[0m {automovel['cilindrada']}cm3 \033[34mPotência:\033[0m {automovel['cilindrada']}cv
-          \033[34mPreço diário:\033[0m {automovel['precoDiario']:.2f}€
-          """) 
+    \033[34mID:\033[0m {automovel['id']} \033[34mMatrícula:\033[0m {automovel['matricula']} \033[34mMarca:\033[0m {automovel['marca']} \033[34mModelo:\033[0m {automovel['modelo']} 
+    \033[34mCor:\033[0m {automovel['cor']} \033[34mPortas:\033[0m {automovel['portas']} \033[34mCilindrada:\033[0m {automovel['cilindrada']}cm3 \033[34mPotência:\033[0m {automovel['cilindrada']}cv
+    \033[34mPreço diário:\033[0m {automovel['precoDiario']:.2f}€
+    """) 
 
 def printAllCars():
     print("\nListagem de Automóveis: \n")
@@ -18,7 +23,18 @@ def printAllCars():
         for automovel in carList():
             printCar(automovel)
     else:
-        print("\nAinda não foram registados carros!\n")  
+        print("\nAinda não foram registados carros!\n") 
+
+def lastBooking(matricula, bookingList):
+    carBooking = [booking for booking in bookingList if booking['automovel_id'][4] == matricula]
+    carBooking.sort(key=lambda x: datetime.strptime(x['dataInicio'], "%Y-%m-%d %H:%M:%S"), reverse=True)
+    lastFiveBooking = carBooking[:5]
+    print("\nÚltimas 5 reservas para o carro com matrícula", matricula, ":\n")
+    if lastFiveBooking:
+        for booking in lastFiveBooking:
+            printBooking(booking)
+    else:
+        print("Não há reservas para este carro.\n")
 
 def insertCar():
     print("\nInsira os dados do automóvel: \n")
@@ -94,13 +110,14 @@ def searchCar():
             matriculaSearch = creatCarMenu(carSearch)
             op = beaupy.select(matriculaSearch, cursor='=>', cursor_style='blue', return_index=True)
             printCar(carSearch[op])
+            lastBooking(matricula, bookingList())
 
             optionsList = ["1 - Atualizar", "2 - Deletar", "3 - Voltar"]
-            op1 = beaupy.select(optionsList, cursor='=>', cursor_style='blue', return_index=True)
-            if op1 == 0: #Atualizar
+            op1 = beaupy.select(optionsList, cursor='=>', cursor_style='blue', return_index=True) +1
+            if op1 == 1: #Atualizar
                 carUpdate(carSearch[op])
                 print("\nCarro atualizado com sucesso!\n")
-            elif op1 == 1: #Apagar
+            elif op1 == 2: #Apagar
                 carDelete(carSearch[op])
                 print("\nCarro removido com sucesso!\n")
             else:

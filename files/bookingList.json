@@ -112,5 +112,24 @@
         ],
         "desconto": 0,
         "valorTotal": 300.0
+    },
+    {
+        "id": 1006,
+        "dataInicio": "2024-06-06 00:00:00",
+        "dataFim": "2024-06-10 00:00:00",
+        "totalDias": 4,
+        "cliente_id": [
+            3,
+            "Marcella"
+        ],
+        "automovel_id": [
+            1,
+            "BMW",
+            "x6",
+            300.0,
+            "36-sw-94"
+        ],
+        "desconto": 0,
+        "valorTotal": 1200.0
     }
 ]

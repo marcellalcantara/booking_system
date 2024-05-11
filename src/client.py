@@ -8,10 +8,10 @@ def clientList():
 
 def printClient(client):
     print(f"""
-          \033[34mID:\033[0m {client['id']} \033[34mNome:\033[0m {client['nome']} \033[34mNIF:\033[0m {client['NIF']}
-          \033[34mData de nascimento:\033[0m {client['dataNascimento'].split()[0]} \033[34mTelefone:\033[0m {client['telefone']}
-          \033[34mE-mail:\033[0m {client['email']}
-          """)
+    \033[34mID:\033[0m {client['id']} \033[34mNome:\033[0m {client['nome']} \033[34mNIF:\033[0m {client['NIF']}
+    \033[34mData de nascimento:\033[0m {client['dataNascimento'].split()[0]} \033[34mTelefone:\033[0m {client['telefone']}
+    \033[34mE-mail:\033[0m {client['email']}
+    """)
 
 def printAllClients():
     print("\nListagem de clientes:")
