@@ -93,5 +93,24 @@
         ],
         "desconto": 0,
         "valorTotal": 250.0
+    },
+    {
+        "id": 1005,
+        "dataInicio": "2024-05-11 00:00:00",
+        "dataFim": "2024-05-12 00:00:00",
+        "totalDias": 1,
+        "cliente_id": [
+            4,
+            "Thais"
+        ],
+        "automovel_id": [
+            1,
+            "BMW",
+            "x6",
+            300.0,
+            "36-sw-94"
+        ],
+        "desconto": 0,
+        "valorTotal": 300.0
     }
 ]
