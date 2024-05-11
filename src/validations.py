@@ -1,5 +1,6 @@
-from datetime import datetime
 import re
+
+from datetime import datetime
 from src.fileStore import loadData
 
 def clientList():

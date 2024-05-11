@@ -1,5 +1,6 @@
 import beaupy
 
+from datetime import datetime
 from src.fileStore import loadData, writeData
 from src.validations import validarNome, validarNif, validarNifUpdate, validarDataNascimento, validarTelefone, validarEmail, getClientID
 

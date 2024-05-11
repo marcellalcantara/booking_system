@@ -1,4 +1,5 @@
 import beaupy
+
 from datetime import datetime
 from src.fileStore import loadData, writeData
 from src.validations import matricula, matriculaUpdate, marca, cor, portas, validaPreco, validarCilindradas, validarPotencia, getCarID
@@ -25,7 +26,8 @@ def printAllCars():
     else:
         print("\nAinda não foram registados carros!\n") 
 
-def lastBooking(matricula, bookingList):
+#Imprimir as 5 últimas reservas da matricula em ordem decrescente
+def lastBookings(matricula, bookingList):
     carBooking = [booking for booking in bookingList if booking['automovel_id'][4] == matricula]
     carBooking.sort(key=lambda x: datetime.strptime(x['dataInicio'], "%Y-%m-%d %H:%M:%S"), reverse=True)
     lastFiveBooking = carBooking[:5]
@@ -34,7 +36,7 @@ def lastBooking(matricula, bookingList):
         for booking in lastFiveBooking:
             printBooking(booking)
     else:
-        print("Não há reservas para este carro.\n")
+        print("Não há reservas para este carro!\n")
 
 def insertCar():
     print("\nInsira os dados do automóvel: \n")
@@ -110,7 +112,7 @@ def searchCar():
             matriculaSearch = creatCarMenu(carSearch)
             op = beaupy.select(matriculaSearch, cursor='=>', cursor_style='blue', return_index=True)
             printCar(carSearch[op])
-            lastBooking(matricula, bookingList())
+            lastBookings(matricula, bookingList())
 
             optionsList = ["1 - Atualizar", "2 - Deletar", "3 - Voltar"]
             op1 = beaupy.select(optionsList, cursor='=>', cursor_style='blue', return_index=True) +1
