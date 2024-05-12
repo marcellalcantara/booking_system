@@ -1,10 +1,7 @@
 
-=> Consigo fazer reservas com datas passadas
+
 => Professor quer reservas futuras
 => Ele não evita conflitos em reservar o mesmo carro, na mesma data
 
 
-=>d. Pesquisa por automóvel: critério matrícula. Deverá devolver os dados do automóvel bem como 
-a listagem dos seus últimos 5 alugueres;
-e. Pesquisa por cliente: critério nif. Deverá devolver os dados do cliente bem como a listagem dos 
-seus últimos 5 alugueres;
+=>Agrupei por data e coloquei da ultima para tras

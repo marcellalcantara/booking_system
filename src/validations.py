@@ -1,5 +1,6 @@
-from datetime import datetime
 import re
+
+from datetime import datetime
 from src.fileStore import loadData
 
 def clientList():
@@ -216,7 +217,7 @@ def importIdClient():
         if len(nifInput) == 9 and nifInput.isdigit():
             for cliente in clientList():
                 if cliente['NIF'] == nifInput:
-                    return (cliente['id'], cliente['nome'])
+                    return (cliente['id'], cliente['nome'], cliente['NIF'])
             print("Cliente não encontrado. Tente novamente.")
         else:
             print("Formato do NIF é inválido.Digite novamente.")

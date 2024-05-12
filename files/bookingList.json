@@ -1,31 +1,13 @@
 [
     {
         "id": 1000,
-        "dataInicio": "2024-05-05 00:00:00",
-        "dataFim": "2024-05-15 00:00:00",
-        "cliente_id": [
-            3,
-            "Marcella"
-        ],
-        "automovel_id": [
-            1,
-            "BMW",
-            "x6",
-            300.0,
-            "36-sw-94"
-        ],
-        "totalDias": 10,
-        "desconto": 0.25,
-        "valorTotal": 2250.0
-    },
-    {
-        "id": 1001,
-        "dataInicio": "2024-05-05 00:00:00",
-        "dataFim": "2024-05-06 00:00:00",
+        "dataInicio": "2024-05-12 00:00:00",
+        "dataFim": "2024-05-13 00:00:00",
         "totalDias": 1,
         "cliente_id": [
             1,
-            "Romulo"
+            "Romulo",
+            "123123123"
         ],
         "automovel_id": [
             1,
@@ -38,13 +20,14 @@
         "valorTotal": 300.0
     },
     {
-        "id": 1002,
-        "dataInicio": "2024-01-01 00:00:00",
-        "dataFim": "2024-01-03 00:00:00",
-        "totalDias": 2,
+        "id": 1001,
+        "dataInicio": "2024-05-12 00:00:00",
+        "dataFim": "2024-05-13 00:00:00",
+        "totalDias": 1,
         "cliente_id": [
-            2,
-            "Thais"
+            3,
+            "Marcella",
+            "123123124"
         ],
         "automovel_id": [
             1,
@@ -54,44 +37,6 @@
             "36-sw-94"
         ],
         "desconto": 0,
-        "valorTotal": 600.0
-    },
-    {
-        "id": 1003,
-        "dataInicio": "2024-05-10 00:00:00",
-        "dataFim": "2024-05-15 00:00:00",
-        "totalDias": 5,
-        "cliente_id": [
-            1,
-            "Romulo"
-        ],
-        "automovel_id": [
-            4,
-            "BMW",
-            "x4",
-            250.0,
-            "yh-48-pl"
-        ],
-        "desconto": 0.15,
-        "valorTotal": 1062.5
-    },
-    {
-        "id": 1004,
-        "dataInicio": "2024-05-10 00:00:00",
-        "dataFim": "2024-05-11 00:00:00",
-        "totalDias": 1,
-        "cliente_id": [
-            1,
-            "Romulo"
-        ],
-        "automovel_id": [
-            3,
-            "Mercedes",
-            "classe A",
-            250.0,
-            "gt-54-12"
-        ],
-        "desconto": 0,
-        "valorTotal": 250.0
+        "valorTotal": 300.0
     }
 ]
