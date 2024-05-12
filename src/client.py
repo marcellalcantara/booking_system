@@ -3,9 +3,13 @@ import beaupy
 from datetime import datetime
 from src.fileStore import loadData, writeData
 from src.validations import validarNome, validarNif, validarNifUpdate, validarDataNascimento, validarTelefone, validarEmail, getClientID
+from src.booking import printBooking
 
 def clientList():
     return loadData("files/clientList.json")
+
+def bookingList():
+    return loadData("files/bookingList.json")
 
 def printClient(client):
     print(f"""
@@ -22,6 +26,17 @@ def printAllClients():
     else:
         print("\nAinda não foram registados clientes!\n")
 
+#Imprimir as 5 últimas reservas do cliente em ordem decrescente de data
+def lastCLientBookings(nif, bookingList):
+    clientBooking = [booking for booking in bookingList if booking['cliente_id'][2] == nif]
+    clientBooking.sort(key=lambda x: datetime.strptime(x['dataInicio'], "%Y-%m-%d %H:%M:%S"), reverse=True)
+    lastFiveClientBooking = clientBooking[:5]
+    print(f"\nÚltimas 5 reservas para o(a) cliente com NIF {nif}:\n")
+    if lastFiveClientBooking:
+        for booking in lastFiveClientBooking:
+            printBooking(booking)
+    else:
+        print("Não há reservas para este(a) cliente!\n") 
 
 def insertClient():
     print("\nInsira os dados do Cliente: \n")
@@ -88,6 +103,7 @@ def searchClient():
             nifSearch = creatClientMenu(clientSearch)
             op = beaupy.select(nifSearch, cursor='=>', cursor_style='blue', return_index=True)
             printClient(clientSearch[op])
+            lastCLientBookings(nif, bookingList())
 
             optionsList = ["1 - Atualizar", "2 - Deletar", "3 - Voltar"]
             op1 = beaupy.select(optionsList, cursor='=>', cursor_style='blue', return_index=True)+1

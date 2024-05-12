@@ -105,7 +105,7 @@ def searchBooking():
         match op1:
             case 1:
                 bookingUpdate(bookingSearch[op])
-                print("\Reserva atualizado com sucesso!\n")
+                print("\nReserva atualizado com sucesso!\n")
             case 2:
                 bookingDelete(bookingSearch[op])
                 print("\nReserva removida com sucesso!\n")
