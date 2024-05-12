@@ -14,6 +14,28 @@ def printBooking(booking):
     \033[34mValor total:\033[0m {booking['valorTotal']:.2f}€. Nessa reserva você obteve um desconto de: {booking['desconto']*100:.2f}%.
     """)
 
+def pastBookings():
+    currentDate = datetime.now().date()
+    print("\nReservas Passadas:\n")
+    for booking in bookingList():
+        startDate = datetime.strptime(booking['dataInicio'].split()[0], '%Y-%m-%d').date()
+        endDate = datetime.strptime(booking['dataFim'].split()[0], '%Y-%m-%d').date()
+        if endDate < currentDate:
+            printBooking(booking)
+        else:
+            print("\nNão existe reserva passada!\n")
+
+def futureBookings():
+    currentDate = datetime.now().date()
+    print("\nReservas Futuras:\n")
+    for booking in bookingList():
+        startDate = datetime.strptime(booking['dataInicio'].split()[0], '%Y-%m-%d').date()
+        endDate = datetime.strptime(booking['dataFim'].split()[0], '%Y-%m-%d').date()
+        if startDate >= currentDate:
+            printBooking(booking)
+        else:
+            print("\nNão existe reserva futura!\n")
+
 def printAllBooking():
     print("\nListagem de reservas: \n")
     if len(bookingList()) > 0:
@@ -22,9 +44,9 @@ def printAllBooking():
             op = beaupy.select(listB, cursor='=>', cursor_style='blue', return_index=True)+1
             match op:
                 case 1:
-                    printBooking(booking)
+                   pastBookings() 
                 case 2:
-                    printBooking(booking)
+                    futureBookings()
                 case 3: 
                     print("Voltando...")
                     return #ver a necessidade do return aqui. 
