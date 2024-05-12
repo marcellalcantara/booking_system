@@ -38,5 +38,25 @@
         ],
         "desconto": 0,
         "valorTotal": 300.0
+    },
+    {
+        "id": 1002,
+        "dataInicio": "2024-05-14 00:00:00",
+        "dataFim": "2024-05-16 00:00:00",
+        "totalDias": 2,
+        "cliente_id": [
+            1,
+            "Romulo Souza",
+            "123123123"
+        ],
+        "automovel_id": [
+            1,
+            "BMW",
+            "x6",
+            300.0,
+            "36-sw-94"
+        ],
+        "desconto": 0,
+        "valorTotal": 600.0
     }
 ]

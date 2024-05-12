@@ -1,5 +1,4 @@
 import re
-
 from datetime import datetime
 from src.fileStore import loadData
 
@@ -156,10 +155,6 @@ def validarPotencia():
 
 #Definir funções de validação booking
 
-def getbookingID():
-    listID = [booking['id'] for booking in bookingList()]
-    return listID[-1] + 1
-
 def inicio():
     while True:
         inicioInput = input("Início (dd/mm/aaaa): ")
@@ -232,4 +227,4 @@ def integerNumber():
         return bookingId
     else:
         print("Reserva Inválida. Digite apenas números")
-    return  bookingId
+    return bookingId

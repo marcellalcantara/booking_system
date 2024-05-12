@@ -1,10 +1,13 @@
 import beaupy
 from datetime import datetime
 from src.fileStore import loadData, writeData
-from src.validations import inicio, fim, totalDias, calcularDesconto, importIdCar, importIdClient, valorTotal, integerNumber, getbookingID
+from src.validations import inicio, fim, totalDias, calcularDesconto, importIdCar, importIdClient, valorTotal, integerNumber
 
 def bookingList():
     return loadData("files/bookingList.json")
+
+def bookingsByCar(automovelId):
+    return [booking for booking in bookingList() if booking['automovel_id'][0] == automovelId]
   
 def printBooking(booking):
     print(f"""
@@ -52,7 +55,11 @@ def printAllBooking():
                     return #ver a necessidade do return aqui. 
             #printBooking(booking)
     else:
-        print("\nAinda não foram registados reservas!\n") 
+        print("\nAinda não foram registados reservas!\n")
+
+def getbookingID():
+    listID = [booking['id'] for booking in bookingList()]
+    return listID[-1] + 1
 
 def insertBooking():
     print("\nInsira os dados da reserva: \n") 
@@ -66,6 +73,10 @@ def insertBooking():
     newBooking['automovel_id'] = importIdCar() 
     newBooking['desconto'] = calcularDesconto(newBooking['totalDias'])
     newBooking['valorTotal'] = valorTotal(newBooking['automovel_id'][3], newBooking['totalDias'],  newBooking['desconto'])
+
+    if not canBook(newBooking['automovel_id'][0], newBooking['dataInicio'], newBooking['dataFim']):
+        print("Não foi possível realizar a reserva. Tente novamente.")
+        return
 
     list = bookingList()
     list.append(newBooking)
@@ -158,3 +169,17 @@ def bookingMenu():
                 break
             case _:
                 print("\nErro: opção inválida!\n")
+
+def canBook(automovelId, dataInicio, dataFim):
+    if len(bookingsByCar(automovelId)) == 0:
+        return True
+    else:
+        for booking in bookingsByCar(automovelId):
+            if dataInicio >= datetime.strptime(booking['dataInicio'], '%Y-%m-%d %H:%M:%S') and dataInicio <= datetime.strptime(booking['dataFim'], '%Y-%m-%d %H:%M:%S'):
+                print("Este carro já está reservado para essa data. Por favor, escolha outra data.")
+                return False
+            elif dataFim >= datetime.strptime(booking['dataInicio'], '%Y-%m-%d %H:%M:%S') and dataFim <= datetime.strptime(booking['dataFim'], '%Y-%m-%d %H:%M:%S'):
+                print("Este carro já está reservado para essa data. Por favor, escolha outra data.")
+                return False
+            else:
+                return True
