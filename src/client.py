@@ -2,7 +2,7 @@ import beaupy
 
 from datetime import datetime
 from src.fileStore import loadData, writeData
-from src.validations import validarNome, validarNif, validarNifUpdate, validarDataNascimento, validarTelefone, validarEmail, getClientID
+from src.validations import validarNome, validarNif, validarNifUpdate, validarDataNascimento, validarTelefone, validarEmail
 from src.booking import printBooking
 
 def clientList():
@@ -37,6 +37,9 @@ def lastCLientBookings(nif, bookingList):
             printBooking(booking)
     else:
         print("Não há reservas para este(a) cliente!\n") 
+def getClientID():
+    listID = [client['id'] for client in clientList()]
+    return listID[-1] + 1
 
 def insertClient():
     print("\nInsira os dados do Cliente: \n")

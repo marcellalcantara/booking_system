@@ -22,8 +22,7 @@ def pastBookings():
     print("\nReservas Passadas:\n")
     for booking in bookingList():
         startDate = datetime.strptime(booking['dataInicio'].split()[0], '%Y-%m-%d').date()
-        endDate = datetime.strptime(booking['dataFim'].split()[0], '%Y-%m-%d').date()
-        if endDate < currentDate:
+        if startDate < currentDate:
             printBooking(booking)
         else:
             print("\nNão existe reserva passada!\n")
@@ -33,7 +32,6 @@ def futureBookings():
     print("\nReservas Futuras:\n")
     for booking in bookingList():
         startDate = datetime.strptime(booking['dataInicio'].split()[0], '%Y-%m-%d').date()
-        endDate = datetime.strptime(booking['dataFim'].split()[0], '%Y-%m-%d').date()
         if startDate >= currentDate:
             printBooking(booking)
         else:
@@ -52,8 +50,7 @@ def printAllBooking():
                     futureBookings()
                 case 3: 
                     print("Voltando...")
-                    return #ver a necessidade do return aqui. 
-            #printBooking(booking)
+                    return 
     else:
         print("\nAinda não foram registados reservas!\n")
 
@@ -171,15 +168,19 @@ def bookingMenu():
                 print("\nErro: opção inválida!\n")
 
 def canBook(automovelId, dataInicio, dataFim):
-    if len(bookingsByCar(automovelId)) == 0:
+    bookings = bookingsByCar(automovelId)
+    
+    if len(bookings) == 0:
+        print("Este carro está disponível para a data escolhida.")
         return True
     else:
-        for booking in bookingsByCar(automovelId):
-            if dataInicio >= datetime.strptime(booking['dataInicio'], '%Y-%m-%d %H:%M:%S') and dataInicio <= datetime.strptime(booking['dataFim'], '%Y-%m-%d %H:%M:%S'):
+        for booking in bookings:
+            inicio_reserva = datetime.strptime(booking['dataInicio'], '%Y-%m-%d %H:%M:%S')
+            fim_reserva = datetime.strptime(booking['dataFim'], '%Y-%m-%d %H:%M:%S')
+            
+            if (dataInicio >= inicio_reserva and dataInicio <= fim_reserva) or (dataFim >= inicio_reserva and dataFim <= fim_reserva):
                 print("Este carro já está reservado para essa data. Por favor, escolha outra data.")
                 return False
-            elif dataFim >= datetime.strptime(booking['dataInicio'], '%Y-%m-%d %H:%M:%S') and dataFim <= datetime.strptime(booking['dataFim'], '%Y-%m-%d %H:%M:%S'):
-                print("Este carro já está reservado para essa data. Por favor, escolha outra data.")
-                return False
-            else:
-                return True
+        
+        print("Este carro está disponível para a data escolhida.")
+        return True

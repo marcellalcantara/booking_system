@@ -12,9 +12,6 @@ def bookingList():
     return loadData("files/bookingList.json")
 
 # Definir funções de Validação Cliente
-def getClientID():
-    listID = [client['id'] for client in clientList()]
-    return listID[-1] + 1
 
 def validarNome():
     while True:
@@ -77,10 +74,6 @@ def validarEmail():
             print("O e-mail é invalido! Insira novamente")
 
 # Definir funções de Validação veiculo
-
-def getCarID():
-    listID = [car['id'] for car in carList()]
-    return listID[-1] + 1
 
 def matricula():
     while True:

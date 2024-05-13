@@ -2,7 +2,7 @@ import beaupy
 
 from datetime import datetime
 from src.fileStore import loadData, writeData
-from src.validations import matricula, matriculaUpdate, marca, cor, portas, validaPreco, validarCilindradas, validarPotencia, getCarID
+from src.validations import matricula, matriculaUpdate, marca, cor, portas, validaPreco, validarCilindradas, validarPotencia
 from src.booking import printBooking
 
 def carList():
@@ -37,6 +37,10 @@ def lastCarBookings(matricula, bookingList):
             printBooking(booking)
     else:
         print("Não há reservas para este carro!\n")
+
+def getCarID():
+    listID = [car['id'] for car in carList()]
+    return listID[-1] + 1
 
 def insertCar():
     print("\nInsira os dados do automóvel: \n")
