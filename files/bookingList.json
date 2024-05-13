@@ -58,5 +58,45 @@
         ],
         "desconto": 0.15,
         "valorTotal": 1275.0
+    },
+    {
+        "id": 1003,
+        "dataInicio": "2024-06-06 00:00:00",
+        "dataFim": "2024-06-08 00:00:00",
+        "totalDias": 2,
+        "cliente_id": [
+            1,
+            "Romulo Sousa",
+            "123123123"
+        ],
+        "automovel_id": [
+            5,
+            "Citroen",
+            "C1",
+            40.0,
+            "87-pq-26"
+        ],
+        "desconto": 0,
+        "valorTotal": 80.0
+    },
+    {
+        "id": 1004,
+        "dataInicio": "2024-05-17 00:00:00",
+        "dataFim": "2024-05-30 00:00:00",
+        "totalDias": 13,
+        "cliente_id": [
+            1,
+            "Romulo Sousa",
+            "123123123"
+        ],
+        "automovel_id": [
+            6,
+            "Peugeot",
+            "3008",
+            150.0,
+            "54-ow-25"
+        ],
+        "desconto": 0.25,
+        "valorTotal": 1462.5
     }
 ]

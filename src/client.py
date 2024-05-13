@@ -5,11 +5,14 @@ from src.fileStore import loadData, writeData
 from src.validations import validarNome, validarNif, validarNifUpdate, validarDataNascimento, validarTelefone, validarEmail
 from src.booking import printBooking
 
+#Retorna a lista de cliente carregada a partir do arquivo "clientList.json"
 def clientList():
     return loadData("files/clientList.json")
 
+#Retorna a lista de booking carregada a partir do arquivo "bookingList.json"
 def bookingList():
     return loadData("files/bookingList.json")
+
 
 def printClient(client):
     print(f"""
@@ -26,10 +29,10 @@ def printAllClients():
     else:
         print("\nAinda não foram registados clientes!\n")
 
-#Imprimir as 5 últimas reservas do cliente em ordem decrescente de data
+#Imprimir as 5 últimas reservas do cliente em ordem decrescente 
 def lastCLientBookings(nif, bookingList):
     clientBooking = [booking for booking in bookingList if booking['cliente_id'][2] == nif]
-    clientBooking.sort(key=lambda x: datetime.strptime(x['dataInicio'], "%Y-%m-%d %H:%M:%S"), reverse=True)
+    clientBooking.sort(key=lambda x: (x['id']), reverse=True)
     lastFiveClientBooking = clientBooking[:5]
     print(f"\nÚltimas 5 reservas para o(a) cliente com NIF {nif}:\n")
     if lastFiveClientBooking:
@@ -37,10 +40,13 @@ def lastCLientBookings(nif, bookingList):
             printBooking(booking)
     else:
         print("Não há reservas para este(a) cliente!\n") 
+
+#Defini Id Cliente
 def getClientID():
     listID = [client['id'] for client in clientList()]
     return listID[-1] + 1
 
+#Inserir Clientes
 def insertClient():
     print("\nInsira os dados do Cliente: \n")
     
@@ -57,12 +63,14 @@ def insertClient():
     writeData(list, 'files/clientList.json')
     print("Cliente adicionado com sucesso!")
 
+#Verificar se o cliente escolhido está correto. 
 def creatClientMenu(clientSearch):
     temp = []
     for client in clientSearch:
         temp.append(f"{client['NIF']} - {client['nome']}")
     return temp
 
+#Atualizar cada campo da reserva
 def clientUpdate(client):
     print(f"\nAtualização do cliente {client['nome']}:\n")
     updateList = ["1 - Nome", "2 - Data de nascimento", "3 - Telefone", "4 - E-mail", "5 - Voltar"]
@@ -86,6 +94,7 @@ def clientUpdate(client):
             break
     writeData(updateField, 'files/clientList.json')    
 
+#Deletar clientes
 def clientDelete(client):
     clientListData = clientList()
     for i, c in enumerate(clientListData):
@@ -94,6 +103,7 @@ def clientDelete(client):
             break
     writeData(clientListData, 'files/clientList.json')
 
+#Submenu cliente. Verifica pelo NIF do cliente e informa as opções disponiveis. 
 def searchClient():
     clientSearch = []
     nif = validarNifUpdate()
@@ -122,6 +132,7 @@ def searchClient():
         else:
             print("\nNão foram encontrados resultados com o critério definido!\n")
 
+#Menu principal cliente
 def clientMenu():
     while True:
         list = [

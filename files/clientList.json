@@ -1,17 +1,9 @@
 [
     {
-        "id": 1,
-        "nome": "Romulo Sousa",
-        "NIF": "123123123",
-        "dataNascimento": "1980-12-07 00:00:00",
-        "telefone": "987654321",
-        "email": "r@r.com"
-    },
-    {
         "id": 3,
         "nome": "Marcella Pereira",
         "NIF": "123123124",
-        "dataNascimento": "2000-04-25 00:00:00",
+        "dataNascimento": "1988-04-25 00:00:00",
         "telefone": "951741852",
         "email": "m@m.com"
     },
@@ -30,5 +22,13 @@
         "dataNascimento": "1987-09-23 00:00:00",
         "telefone": "963852715",
         "email": "g@g.com"
+    },
+    {
+        "id": 6,
+        "nome": "Romulo Sousa",
+        "NIF": "123123123",
+        "dataNascimento": "1977-01-02 00:00:00",
+        "telefone": "963574258",
+        "email": "r@r.com"
     }
 ]

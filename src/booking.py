@@ -3,20 +3,19 @@ from datetime import datetime
 from src.fileStore import loadData, writeData
 from src.validations import inicio, fim, totalDias, calcularDesconto, importIdCar, importIdClient, valorTotal, integerNumber
 
+#Retorna a lista de booking carregada a partir do arquivo "bookingList.json"
 def bookingList():
     return loadData("files/bookingList.json")
 
-def bookingsByCar(automovelId):
-    return [booking for booking in bookingList() if booking['automovel_id'][0] == automovelId]
-  
-def printBooking(booking):
-    print(f"""
+#Imprimir os dados do cliente  
+def printBooking(booking):print(f"""
     \033[34mID:\033[0m {booking['id']} \033[34mInício:\033[0m {booking['dataInicio'].split()[0]} \033[34mFim:\033[0m {booking['dataFim'].split()[0]} \033[34mQuantidade de dias:\033[0m {booking['totalDias']} dias
     \033[34mCliente:\033[0m {booking['cliente_id'][0]} - {booking['cliente_id'][1]}
     \033[34mAutomóvel:\033[0m {booking['automovel_id'][0]} - {booking['automovel_id'][1]}({booking['automovel_id'][2]}) Matrícula:{booking['automovel_id'][4]}
-    \033[34mValor total:\033[0m {booking['valorTotal']:.2f}€. Nessa reserva você obteve um desconto de: {booking['desconto']*100:.2f}%.
+    \033[34mValor total:\033[0m {booking['valorTotal']:.2f}€. Nessa reserva você obteve um desconto de: {booking['desconto']*100}%.
     """)
-
+    
+#Imprimir as reservas passadas
 def pastBookings():
     currentDate = datetime.now().date()
     print("\nReservas Passadas:\n")
@@ -27,6 +26,7 @@ def pastBookings():
         else:
             print("\nNão existe reserva passada!\n")
 
+#Imprimir as reservas futuras considerando a data de execução
 def futureBookings():
     currentDate = datetime.now().date()
     print("\nReservas Futuras:\n")
@@ -37,6 +37,7 @@ def futureBookings():
         else:
             print("\nNão existe reserva futura!\n")
 
+#Chama a função imprimir
 def printAllBooking():
     print("\nListagem de reservas: \n")
     if len(bookingList()) > 0:
@@ -54,10 +55,12 @@ def printAllBooking():
     else:
         print("\nAinda não foram registados reservas!\n")
 
+#Define o ID da reserva
 def getbookingID():
     listID = [booking['id'] for booking in bookingList()]
     return listID[-1] + 1
 
+#Insere os dados da reserva
 def insertBooking():
     print("\nInsira os dados da reserva: \n") 
 
@@ -80,12 +83,14 @@ def insertBooking():
     writeData(list, 'files/bookingList.json')
     print("Reserva adicionada com sucesso!")
 
+#Verificar se a reserva escolhida está correta
 def createBookingMenu(bookingSearch):
     temp = []
     for booking in bookingSearch:
         temp.append(f"{booking['id']} - {booking['cliente_id'][1]} - {booking['automovel_id'][4]}")
     return temp
 
+#Atualizar cada campo da reserva
 def bookingUpdate(booking):
     print(f"\nAtualização da reserva nº: {booking['id']}:\n")
     updateList = ["1 - Data início", "2 - Data fim", "3 - Cliente", "4 - Automóvel", "5 - Voltar"]
@@ -109,6 +114,7 @@ def bookingUpdate(booking):
             break
     writeData(updateField, 'files/bookingList.json')    
 
+#Deletar reserva
 def bookingDelete(booking):
     bookingListData = bookingList()
     for i, c in enumerate(bookingListData):
@@ -117,6 +123,7 @@ def bookingDelete(booking):
             break
     writeData(bookingListData, 'files/bookingList.json')
 
+#Pesquisar pelo ID da reserva
 def searchBooking():
     bookingSearch = []
     bookingID = integerNumber()
@@ -135,7 +142,7 @@ def searchBooking():
         match op1:
             case 1:
                 bookingUpdate(bookingSearch[op])
-                print("\nReserva atualizado com sucesso!\n")
+                print("\nReserva atualizada com sucesso!\n")
             case 2:
                 bookingDelete(bookingSearch[op])
                 print("\nReserva removida com sucesso!\n")
@@ -144,6 +151,7 @@ def searchBooking():
     else:
         print("\nNão foram encontrados resultados com o critério definido!\n")
 
+#Menu principal da reserva
 def bookingMenu():
     while True:
         lista = [
@@ -167,11 +175,16 @@ def bookingMenu():
             case _:
                 print("\nErro: opção inválida!\n")
 
+#Comparar ID do automóvel
+def bookingsByCar(automovelId):
+    return [booking for booking in bookingList() if booking['automovel_id'][0] == automovelId]
+
+#Evitar conflitos de reserva
 def canBook(automovelId, dataInicio, dataFim):
     bookings = bookingsByCar(automovelId)
     
     if len(bookings) == 0:
-        print("Este carro está disponível para a data escolhida.")
+        print("\nEste carro está disponível para a data escolhida.")
         return True
     else:
         for booking in bookings:
@@ -179,8 +192,8 @@ def canBook(automovelId, dataInicio, dataFim):
             fim_reserva = datetime.strptime(booking['dataFim'], '%Y-%m-%d %H:%M:%S')
             
             if (dataInicio >= inicio_reserva and dataInicio <= fim_reserva) or (dataFim >= inicio_reserva and dataFim <= fim_reserva):
-                print("Este carro já está reservado para essa data. Por favor, escolha outra data.")
+                print("\nEste carro já está reservado para essa data. Por favor, escolha outra data.")
                 return False
         
-        print("Este carro está disponível para a data escolhida.")
+        print("\nEste carro está disponível para a data escolhida.")
         return True
