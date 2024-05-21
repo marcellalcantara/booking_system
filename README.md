@@ -1,5 +1,5 @@
 #booking_system
-Application developed during the CESAE course using Python.
+Application developed during the CESAE course using language Python.
 
 Programmers: 
 - Marcella Pereira
